@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Phone</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="modal fade" id="modal-about" tabindex="-1" role="dialog" aria-labelledby="modal-about-label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-about-label">About Me</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-unstyled">
+
+                        <li>
+                            <span class="text-muted"> 16/03/2021</span>
+                            <ul>
+                                <li class="text-info">
+                                    v.0.1
+                                </li>
+                                <li>
+                                    First Create
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container my-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <div class="form-row">
+                        <div class="col">Convert phone number v.0.1</div>
+                        <div class="col-auto float-right">
+                            <button class="btn btn-outline-info" data-toggle="modal" data-target="#modal-about">About
+                                Me</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="col-xl-6">
+                                        <div class="form-row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label for="contry_code" class="form-control-label">
+                                                        Contry code
+                                                    </label>
+                                                    <input type="text" class="form-control" name="contry_code"
+                                                        id="contry_code" value="+855">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label for="number" class="form-control-label">
+                                                        Numbers
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <textarea name="numbers" cols="30" rows="5" class="form-control"
+                                                        id="numbers"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label for="passwords" class="form-control-label ">
+                                                        <div class="form-row">
+                                                            <div class="col"> Passwords
+                                                                <span class="text-danger">*</span></div>
+                                                            <div class="col-auto float-right">
+                                                                <input type="checkbox" class="form-check"
+                                                                    name="self_password" id="self_password">
+                                                            </div>
+                                                        </div>
+
+                                                    </label>
+
+                                                    <textarea class="form-control" name="passwords" id="passwords"
+                                                        cols="30" rows="5" required
+                                                        placeholder='11112222&#10;22223333&#10;66667777&#10;77778888&#10;88889999'></textarea>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4">
+                                                <div class="form-group">
+                                                    <label for="create" class="form-control-label">
+                                                        Create
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="number" class="form-control" name="create" id="create"
+                                                        value="10" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label for="create" class="form-control-label">
+                                                        From
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="form-group d-flex form-control">
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input checked type="radio" id="ascending" name="from"
+                                                                value="ascending" class="custom-control-input">
+                                                            <label class="custom-control-label" for="ascending">1
+                                                                &rAarr; 9</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" id="descending" name="from"
+                                                                value="descending" class="custom-control-input">
+                                                            <label class="custom-control-label" for="descending">1
+                                                                &lArr; 9</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-2">
+                                                <div class="form-group">
+                                                    <label for="flag" class="form-control-label">
+                                                        Flag
+                                                    </label>
+                                                    <input type="text" class="form-control" name="flag" id="flag"
+                                                        value="|">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <textarea class="form-control" name="results" id="results" cols="30" rows="10"
+                                            placeholder="Results"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="float-right">
+                                    <button class="btn btn-outline-success" type="submit">Convert</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    const KSgenerate = {
+        init: function () {
+            this.form();
+
+        },
+
+        form: () => {
+            $(`form`).on('submit', function (e) {
+                e.preventDefault();
+                let contry_code = $(this).find(`[name="contry_code"]`).val();
+                let flag = $(this).find(`[name="flag"]`).val();
+                let numbers = $(this).find(`[name="numbers"]`).val();
+                let passwords = $(this).find(`[name="passwords"]`).val();
+                let create = $(this).find(`[name="create"]`).val();
+                let from = $(this).find(`[name="from"]:checked`).val();
+                let self_password = $(this).find(`[name="self_password"]`).prop('checked');
+                var results = '';
+
+
+                if (numbers.trim()) {
+                    $.each(numbers.trim().split('\n'), (i, number) => {
+                        if (number.length >= 9) {
+
+
+                            for (let index = 0; index <= create; index++) {
+
+                                if (from == 'ascending') {
+                                    number = parseInt(number) + index;
+
+
+
+                                } else {
+                                    number = parseInt(number) - index;
+                                }
+
+                                let pws = passwords.trim().split('\n');
+                                $.each(pws, (i, pass) => {
+                                    if (pass && pass.trim()) {
+                                        results += (contry_code ? contry_code :
+                                                '0') + number +
+                                            flag + pass.trim() + '\n'
+                                    }
+
+                                });
+
+                                if (self_password) {
+                                    results += (contry_code ? contry_code : '0') + number +
+                                        flag + '0' + number +
+                                        '\n'
+                                }
+
+                            }
+
+
+
+                        }
+
+
+
+                    });
+                }
+
+
+
+
+
+                if (results) {
+                    $(this).find(`[name="results"]`).val(results.trim());
+                    $(this).find(`[name="results"]`).nextAll().remove();
+                    $(this).find(`[name="results"]`).after($(`<div class="text-mute text-right">`).text(
+                        `Total: ${results.trim().split('\n').length + (passwords.trim().split('\n').length > 1 ? (passwords ? '( '+create + ' x ' + (self_password ? '( '+passwords.trim().split('\n').length+' + 1)' : passwords.trim().split('\n').length) + ' passwords)' :  null ) : (self_password ? '( '+passwords.trim().split('\n').length+' + 1 password)' : null)) } `
+                    ))
+                }
+
+
+
+            });
+        }
+
+    };
+
+    KSgenerate.init();
+</script>
+
+</html>

@@ -13,11 +13,63 @@
 </head>
 
 <body>
+    <div class="modal fade" id="modal-about" tabindex="-1" role="dialog" aria-labelledby="modal-about-label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-about-label">About Me</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-unstyled">
+                        <li>
+                            <span class="text-muted"> 16/03/2021</span>
+                            <ul>
+                                <li class="text-info">
+                                    v.0.2
+                                </li>
+                                <li>
+                                    Update password
+                                </li>
+                                <li>
+                                    Can set multiple passwords
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="text-muted"> 15/03/2021</span>
+                            <ul>
+                                <li class="text-info">
+                                    v.0.1
+                                </li>
+                                <li>
+                                    First Create
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
     <div class="container my-3">
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Generate phone number v.0.1
+                    <div class="form-row">
+                        <div class="col">Generate phone number v.0.2</div>
+                        <div class="col-auto float-right">
+                            <button class="btn btn-outline-info" data-toggle="modal" data-target="#modal-about">About
+                                Me</button>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="card-body">
                     <ul class="nav nav-tabs" role="tablist">
@@ -58,11 +110,14 @@
 
                                                     <div class="col-xl-6">
                                                         <div class="form-group">
-                                                            <label for="password" class="form-control-label">
-                                                                Password
+                                                            <label for="passwords" class="form-control-label">
+                                                                Passwords
                                                             </label>
-                                                            <input type="text" class="form-control" name="password"
-                                                                id="password" value="">
+                                                            <textarea class="form-control" name="passwords"
+                                                                id="passwords" cols="30" rows="5"
+                                                                placeholder='11112222&#10;22223333&#10;66667777&#10;77778888&#10;88889999'></textarea>
+
+
                                                         </div>
                                                     </div>
 
@@ -140,11 +195,12 @@
 
                                                     <div class="col-xl-6">
                                                         <div class="form-group">
-                                                            <label for="password" class="form-control-label">
-                                                                Password
+                                                            <label for="passwords" class="form-control-label">
+                                                                Passwords
                                                             </label>
-                                                            <input type="text" class="form-control" name="password"
-                                                                id="password" value="">
+                                                            <textarea class="form-control" name="passwords"
+                                                                id="passwords" cols="30" rows="5"
+                                                                placeholder='11112222&#10;22223333&#10;66667777&#10;77778888&#10;88889999'></textarea>
                                                         </div>
                                                     </div>
 
@@ -253,7 +309,7 @@
                 let opt = JSON.parse(operator);
                 let create = $(this).find(`[name="create"]`).val();
                 let flag = $(this).find(`[name="flag"]`).val();
-                let password = $(this).find(`[name="password"]`).val();
+                let passwords = $(this).find(`[name="passwords"]`).val();
                 let password_length = $(this).find(`[name="password_length"]`).val();
                 var results = '';
 
@@ -266,14 +322,35 @@
                         } else {
                             pass = random;
                         }
+                        results += (contry_code ? contry_code : '0') + parseInt(random) + flag + pass +
+                            '\n'
+                    } else if (passwords) {
 
-                    } else if (password) {
-                        pass = password;
+                        let pws = passwords.trim().split('\n');
+                        $.each(pws, (i, pass) => {
+                            if (pass && pass.trim()) {
+                                results += (contry_code ? contry_code : '0') + parseInt(
+                                        random) +
+                                    flag + pass.trim() + '\n'
+                            }
+
+                        })
+                    } else {
+                        results += (contry_code ? contry_code : '0') + parseInt(random) + flag + pass +
+                            '\n'
                     }
-                    console.log(contry_code)
-                    results += (contry_code ? contry_code : '0') + parseInt(random) + flag + pass + '\n'
+
+
                 }
-                $(this).find(`[name="results"]`).val(results);
+                if (results) {
+                    $(this).find(`[name="results"]`).val(results.trim());
+                    $(this).find(`[name="results"]`).nextAll().remove();
+                    $(this).find(`[name="results"]`).after($(`<div class="text-mute text-right">`).text(
+                        `Total: ${results.trim().split('\n').length + (passwords.trim().split('\n').length > 1 ? (passwords ? '( '+create + ' x ' + passwords.trim().split('\n').length + ' passwords)' : null ) : null) } `
+                    ))
+                }
+
+
 
             });
         }
