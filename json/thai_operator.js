@@ -1,0 +1,71 @@
+const thai_operator = {
+    "ais": [{
+            "operator": "02",
+            "length": 7
+        },
+        {
+            "operator": "032",
+            "length": 7
+        }, {
+            "operator": "034",
+            "length": 7
+        }, {
+            "operator": "035",
+            "length": 7
+        }, {
+            "operator": "036",
+            "length": 7
+        }, {
+            "operator": "037",
+            "length": 7
+        }, {
+            "operator": "038",
+            "length": 7
+        }, {
+            "operator": "039",
+            "length": 7
+        }, {
+            "operator": "042",
+            "length": 7
+        }, {
+            "operator": "043",
+            "length": 7
+        }, {
+            "operator": "044",
+            "length": 7
+        }, {
+            "operator": "045",
+            "length": 7
+        }, {
+            "operator": "052",
+            "length": 7
+        }, {
+            "operator": "053",
+            "length": 7
+        }, {
+            "operator": "054",
+            "length": 7
+        }, {
+            "operator": "055",
+            "length": 7
+        }, {
+            "operator": "056",
+            "length": 7
+        }, {
+            "operator": "073",
+            "length": 7
+        }, {
+            "operator": "074",
+            "length": 7
+        }, {
+            "operator": "075",
+            "length": 7
+        }, {
+            "operator": "076",
+            "length": 7
+        }, {
+            "operator": "077",
+            "length": 7
+        },
+    ]
+}

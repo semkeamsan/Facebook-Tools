@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Disabled Account</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <div class="row">
+            <div class="col">
+                <form action="" id="form">
+                    <div class="card">
+                        <div class="card-header">
+                            Find Account Disabled
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col-xl-6 mb-3">
+                                    <label class="form-control-label" for="disabled">Account disabled</label>
+                                    <textarea class="form-control text-nowrap" name="disabled" id="disabled" cols="30"
+                                        rows="10" placeholder="Account disabled"></textarea>
+                                </div>
+                                <div class="col-xl-6 mb-3">
+                                    <label class="form-control-label" for="original">Account original</label>
+                                    <textarea class="form-control text-nowrap" name="original" id="original" cols="30"
+                                        rows="10" placeholder="Account original"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row d-none" id="show-found">
+                                <div class="col">
+                                    <label class="form-control-label text-success" for="found">Account found</label>
+                                    <textarea class="form-control text-nowrap" name="found" id="found" cols="30"
+                                        rows="10" placeholder="Account found"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row d-none" id="show-not-found">
+                                <div class="col">
+                                    <label class="form-control-label text-danger" for="not-found">Account not
+                                        found</label>
+                                    <textarea class="form-control text-nowrap" name="not-found" id="not-found" cols="30"
+                                        rows="10" placeholder="Account not-found"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="float-right">
+                                <button class="btn btn-outline-success">
+                                    Find
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(() => {
+            $(`textarea#disabled,textarea#original,textarea#found,textarea#not-found`).on('input',
+                function () {
+                    let val = $(this).val();
+                    let count = 0;
+                    if (val) {
+                        let split = val.split('\n');
+                        $.each(split, (i, v) => {
+                            if (v) {
+                                count++;
+                            }
+                        });
+                    } else {
+                        count = 0;
+                        $(`#show-found`).addClass('d-none');
+                        $(`#show-not-found`).addClass('d-none');
+                    }
+
+                    $(this).nextAll().remove();
+                    $(this).after(`<div class="float-right text-muted text-sm">Accounts ${count}</div>`);
+                });
+        });
+
+        $(`form#form`).on('submit', function (e) {
+            e.preventDefault();
+            let disabled = $(this).find(`textarea#disabled`).val();
+            let original = $(this).find(`textarea#original`).val();
+            let split_disabled = split(disabled);
+            let split_original = split(original);
+
+            let found = '';
+            let not_found = '';
+            $.each(split_disabled, (id, v) => {
+                if (split_original[id]) {
+                    found += split_original[id] + '\n';
+                } else {
+
+                    not_found += split_disabled[id] + '\n';
+
+                }
+            });
+            $(`#show-found`).addClass('d-none');
+            $(`#show-not-found`).addClass('d-none');
+            if (found) {
+                $(`#show-found`).removeClass('d-none');
+                $(this).find(`textarea#found`).val(found.trim()).trigger('input');
+            }
+            if (not_found) {
+                $(`#show-not-found`).removeClass('d-none');
+                $(this).find(`textarea#not-found`).val(not_found.trim()).trigger('input');
+            }
+        });
+
+        var split = (values, flag = '|') => {
+            let d = {};
+            let split = values.split('\n');
+            $.each(split, (i, v) => {
+                if (v) {
+                    let a = v.trim();
+                    let split = a.split(flag);
+                    d[split[0]] = a;
+                }
+            });
+            return d;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Phone</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Generate phone number v.0.1
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tab-cambodia" role="tab">Cambodia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tab-thai" role="tab">Thai</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-cambodia" role="tabpanel">
+                            <form action="">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="col-xl-6">
+                                                <div class="form-row">
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="contry_code" class="form-control-label">
+                                                                Contry code
+                                                            </label>
+                                                            <input type="text" class="form-control" name="contry_code"
+                                                                id="contry_code" value="+855">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="operator" class="form-control-label">
+                                                                Operator
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <select name="operator" class="form-control"
+                                                                id="operator"></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="password" class="form-control-label">
+                                                                Password
+                                                            </label>
+                                                            <input type="text" class="form-control" name="password"
+                                                                id="password" value="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="password_length" class="form-control-label">
+                                                                Password from generate length
+                                                            </label>
+                                                            <input type="text" class="form-control" maxlength="2"
+                                                                name="password_length" id="password_length" value="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="create" class="form-control-label">
+                                                                Create
+                                                            </label>
+                                                            <input type="number" class="form-control" name="create"
+                                                                minlength="1" id="create" value="100" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="flag" class="form-control-label">
+                                                                Flag
+                                                            </label>
+                                                            <input type="text" class="form-control" name="flag"
+                                                                id="flag" value="|">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <textarea class="form-control" name="results" id="results" cols="30"
+                                                    rows="10" placeholder="Results"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="float-right">
+                                            <button class="btn btn-outline-success" type="submit">Generate</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="tab-thai" role="tabpanel">
+                            <form action="">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="col-xl-6">
+                                                <div class="form-row">
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="contry_code" class="form-control-label">
+                                                                Contry code
+                                                            </label>
+                                                            <input type="text" class="form-control" name="contry_code"
+                                                                id="contry_code" value="+66">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="operator" class="form-control-label">
+                                                                Operator
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <select name="operator" class="form-control"
+                                                                id="operator"></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="password" class="form-control-label">
+                                                                Password
+                                                            </label>
+                                                            <input type="text" class="form-control" name="password"
+                                                                id="password" value="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="password_length" class="form-control-label">
+                                                                Password from generate length
+                                                            </label>
+                                                            <input type="text" class="form-control" maxlength="2"
+                                                                name="password_length" id="password_length" value="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="create" class="form-control-label">
+                                                                Create
+                                                            </label>
+                                                            <input type="number" class="form-control" name="create"
+                                                                minlength="1" id="create" value="100" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="flag" class="form-control-label">
+                                                                Flag
+                                                            </label>
+                                                            <input type="text" class="form-control" name="flag"
+                                                                id="flag" value="|">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <textarea class="form-control" name="results" id="results" cols="30"
+                                                    rows="10" placeholder="Results"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="float-right">
+                                            <button class="btn btn-outline-success" type="submit">Generate</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="json/cambodia_operator.js"></script>
+<script src="json/thai_operator.js"></script>
+<script>
+    const KSgenerate = {
+        init: function () {
+
+            $.each(cambodia_operator, (a, b) => {
+                let o = $(`<optgroup label="${this.capitalizeFirstLetter(a)}">`)
+                $.map(b, (c) => {
+                    o.append($(`<option value='${JSON.stringify(c)}'>`).text(c.operator));
+                });
+                $(`#tab-cambodia`).find(`[name="operator"]`).append(o);
+            });
+            $.each(thai_operator, (a, b) => {
+                let o = $(`<optgroup label="${this.capitalizeFirstLetter(a)}">`)
+                $.map(b, (c) => {
+                    o.append($(`<option value='${JSON.stringify(c)}'>`).text(c.operator));
+                });
+                $(`#tab-thai`).find(`[name="operator"]`).append(o);
+            });
+
+            this.event();
+            this.form();
+
+        },
+        random: (length = 6) => {
+            return Math.floor(Math.pow(10, length - 1) + Math.random() * 9 * Math.pow(10, length - 1));
+        },
+        capitalizeFirstLetter: (string) => {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        },
+        event: () => {
+            $(`form`).find(`[name="password"]`).change(function () {
+                let val = $(this).val();
+                if (val) {
+                    $(`form`).find(`[name="password_length"]`).val('');
+                }
+            });
+            $(`form`).find(`[name="password_length"]`).change(function () {
+                let val = $(this).val();
+                if (val) {
+                    $(`form`).find(`[name="password"]`).val('');
+                }
+            });
+        },
+        form: () => {
+            $(`form`).on('submit', function (e) {
+                e.preventDefault();
+                let contry_code = $(this).find(`[name="contry_code"]`).val();
+                let operator = $(this).find(`[name="operator"]`).val();
+                let opt = JSON.parse(operator);
+                let create = $(this).find(`[name="create"]`).val();
+                let flag = $(this).find(`[name="flag"]`).val();
+                let password = $(this).find(`[name="password"]`).val();
+                let password_length = $(this).find(`[name="password_length"]`).val();
+                var results = '';
+
+                for (let index = 0; index < create; index++) {
+                    let random = opt.operator + KSgenerate.random(opt.length);
+                    let pass = random;
+                    if (password_length) {
+                        if (password_length < random.length) {
+                            pass = random.substring(random.length - password_length);
+                        } else {
+                            pass = random;
+                        }
+
+                    } else if (password) {
+                        pass = password;
+                    }
+                    console.log(contry_code)
+                    results += (contry_code ? contry_code : '0') + parseInt(random) + flag + pass + '\n'
+                }
+                $(this).find(`[name="results"]`).val(results);
+
+            });
+        }
+
+    };
+
+    KSgenerate.init();
+</script>
+
+</html>
