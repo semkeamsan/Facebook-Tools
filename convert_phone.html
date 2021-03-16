@@ -197,16 +197,14 @@
                     $.each(numbers.trim().split('\n'), (i, number) => {
                         if (number.length >= 9) {
 
-                            number = number.replaceAll(' ','');
+                            number = number.replaceAll(' ', '');
                             for (let index = 0; index <= create; index++) {
 
                                 if (from == 'ascending') {
-                                    number = parseInt(number) + index;
-
-
+                                    number = parseInt(number) + (index > 0 ? 1 : 0);
 
                                 } else {
-                                    number = parseInt(number) - index;
+                                    number = parseInt(number) - (index > 0 ? 1 : 0);
                                 }
 
                                 let pws = passwords.trim().split('\n');

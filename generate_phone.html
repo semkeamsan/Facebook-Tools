@@ -322,23 +322,21 @@
                         } else {
                             pass = random;
                         }
-                        results += (contry_code ? contry_code : '0') + parseInt(random) + flag + pass +
-                            '\n'
-                    } else if (passwords) {
 
-                        let pws = passwords.trim().split('\n');
-                        $.each(pws, (i, pass) => {
-                            if (pass && pass.trim()) {
-                                results += (contry_code ? contry_code : '0') + parseInt(
-                                        random) +
-                                    flag + pass.trim() + '\n'
-                            }
-
-                        })
-                    } else {
                         results += (contry_code ? contry_code : '0') + parseInt(random) + flag + pass +
                             '\n'
                     }
+
+
+
+                    let pws = passwords.trim().split('\n');
+                    $.each(pws, (i, pass) => {
+                        if (pass && pass.trim()) {
+                            results += (contry_code ? contry_code : '0') + parseInt(
+                                    random) +
+                                flag + pass.trim() + '\n'
+                        }
+                    })
 
 
                 }
@@ -356,7 +354,6 @@
         }
 
     };
-
     KSgenerate.init();
 </script>
 
