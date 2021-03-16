@@ -197,7 +197,7 @@
                     $.each(numbers.trim().split('\n'), (i, number) => {
                         if (number.length >= 9) {
 
-
+                            number = number.replaceAll(' ','');
                             for (let index = 0; index <= create; index++) {
 
                                 if (from == 'ascending') {
