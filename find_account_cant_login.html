@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Account Can't Login</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <div class="row">
+            <div class="col">
+                <form action="" id="form">
+                    <div class="card">
+                        <div class="card-header">
+                            Find Account Can't Login
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col-xl-6 mb-3">
+                                    <label class="form-control-label" for="logged">Account logged</label>
+                                    <textarea class="form-control text-nowrap" name="logged" id="logged" cols="30"
+                                        rows="10" placeholder="Account logged"></textarea>
+                                </div>
+                                <div class="col-xl-6 mb-3">
+                                    <label class="form-control-label" for="original">Account original</label>
+                                    <textarea class="form-control text-nowrap" name="original" id="original" cols="30"
+                                        rows="10" placeholder="Account original"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row d-none" id="results">
+                                <div class="col">
+                                    <label class="form-control-label text-success" for="result">Results</label>
+                                    <textarea class="form-control text-nowrap" name="result" id="result" cols="30"
+                                        rows="10" placeholder="Results"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="float-right">
+                                <button class="btn btn-outline-success">
+                                    Find
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(() => {
+            $(`textarea#logged,textarea#original,textarea#result`).on('input',
+                function () {
+                    let val = $(this).val();
+                    let count = 0;
+                    if (val) {
+                        let split = val.split('\n');
+                        $.each(split, (i, v) => {
+                            if (v) {
+                                count++;
+                            }
+                        });
+                    } else {
+                        count = 0;
+                        $(`#results`).addClass('d-none');
+                    }
+
+                    $(this).nextAll().remove();
+                    $(this).after(`<div class="float-right text-muted text-sm">Accounts ${count}</div>`);
+                });
+        });
+
+        $(`form#form`).on('submit', function (e) {
+            e.preventDefault();
+            let logged = $(this).find(`textarea#logged`).val();
+            let original = $(this).find(`textarea#original`).val();
+            let split_logged = split(logged);
+            let split_original = split(original);
+
+
+            let result = '';
+            $.each(split_original, (id, v) => {
+                if (split_logged[id]) {
+
+                } else {
+                    result += split_original[id] + '\n';
+                }
+            });
+            $(`#results`).addClass('d-none');
+            if (result) {
+                $(`#results`).removeClass('d-none');
+                $(this).find(`textarea#result`).val(result.trim()).trigger('input');
+            }
+
+        });
+
+        var split = (values, flag = '|') => {
+            let d = {};
+            let split = values.split('\n');
+            $.each(split, (i, v) => {
+                if (v) {
+                    let a = v.trim();
+                    let split = a.split(flag);
+                    d[split[0]] = a;
+                }
+            });
+            return d;
+        }
+    </script>
+</body>
+
+</html>

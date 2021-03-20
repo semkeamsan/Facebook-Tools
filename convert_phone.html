@@ -67,11 +67,11 @@
                                         <div class="form-row">
                                             <div class="col-xl-6">
                                                 <div class="form-group">
-                                                    <label for="contry_code" class="form-control-label">
-                                                        Contry code
+                                                    <label for="country_code" class="form-control-label">
+                                                        Country code
                                                     </label>
-                                                    <input type="text" class="form-control" name="contry_code"
-                                                        id="contry_code" value="+855">
+                                                    <input type="text" class="form-control" name="country_code"
+                                                        id="country_code" value="+855">
                                                 </div>
                                             </div>
                                         </div>
@@ -154,7 +154,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
-                                        <textarea class="form-control" name="results" id="results" cols="30" rows="10"
+                                        <textarea class="form-control" name="results" id="results" cols="30" rows="10" readonly
                                             placeholder="Results"></textarea>
                                     </div>
                                 </div>
@@ -183,10 +183,11 @@
         form: () => {
             $(`form`).on('submit', function (e) {
                 e.preventDefault();
-                let contry_code = $(this).find(`[name="contry_code"]`).val();
+                let country_code = $(this).find(`[name="country_code"]`).val();
                 let flag = $(this).find(`[name="flag"]`).val();
                 let numbers = $(this).find(`[name="numbers"]`).val();
                 let passwords = $(this).find(`[name="passwords"]`).val();
+                let pws = passwords.trim().split('\n');
                 let create = $(this).find(`[name="create"]`).val();
                 let from = $(this).find(`[name="from"]:checked`).val();
                 let self_password = $(this).find(`[name="self_password"]`).prop('checked');
@@ -207,10 +208,10 @@
                                     number = parseInt(number) - (index > 0 ? 1 : 0);
                                 }
 
-                                let pws = passwords.trim().split('\n');
+
                                 $.each(pws, (i, pass) => {
                                     if (pass && pass.trim()) {
-                                        results += (contry_code ? contry_code :
+                                        results += (country_code ? country_code :
                                                 '0') + number +
                                             flag + pass.trim() + '\n'
                                     }
@@ -218,35 +219,25 @@
                                 });
 
                                 if (self_password) {
-                                    results += (contry_code ? contry_code : '0') + number +
+                                    results += (country_code ? country_code : '0') + number +
                                         flag + '0' + number +
                                         '\n'
                                 }
-
                             }
-
-
-
                         }
-
-
-
                     });
                 }
-
-
-
-
 
                 if (results) {
                     $(this).find(`[name="results"]`).val(results.trim());
                     $(this).find(`[name="results"]`).nextAll().remove();
-                    $(this).find(`[name="results"]`).after($(`<div class="text-mute text-right">`).text(
-                        `Total: ${results.trim().split('\n').length + (passwords.trim().split('\n').length > 1 ? (passwords ? '( '+create + ' x ' + (self_password ? '( '+passwords.trim().split('\n').length+' + 1)' : passwords.trim().split('\n').length) + ' passwords)' :  null ) : (self_password ? '( '+passwords.trim().split('\n').length+' + 1 password)' : null)) } `
-                    ))
+                    let t = `Total: ${results.trim().split('\n').length}`;
+                    let $l = $(`<div class="text-mute text-right">`)
+                        .text(t);
+                    $l.text(t + (pws.length ? `(${create } x ${pws.length + (self_password ? 1: 0) } passwords)` : null))
+
+                    $(this).find(`[name="results"]`).after($l);
                 }
-
-
 
             });
         }

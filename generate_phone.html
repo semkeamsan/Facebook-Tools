@@ -94,7 +94,7 @@
                                                                 Contry code
                                                             </label>
                                                             <input type="text" class="form-control" name="contry_code"
-                                                                id="contry_code" value="+855">
+                                                                id="contry_code" value="855">
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6">
@@ -153,7 +153,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-6">
-                                                <textarea class="form-control" name="results" id="results" cols="30"
+                                                <textarea class="form-control" name="results" id="results" cols="30" readonly
                                                     rows="10" placeholder="Results"></textarea>
                                             </div>
                                         </div>
@@ -236,7 +236,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-6">
-                                                <textarea class="form-control" name="results" id="results" cols="30"
+                                                <textarea class="form-control" name="results" id="results" cols="30" readonly
                                                     rows="10" placeholder="Results"></textarea>
                                             </div>
                                         </div>
@@ -310,42 +310,60 @@
                 let create = $(this).find(`[name="create"]`).val();
                 let flag = $(this).find(`[name="flag"]`).val();
                 let passwords = $(this).find(`[name="passwords"]`).val();
+                let pws = passwords.trim().split('\n');
                 let password_length = $(this).find(`[name="password_length"]`).val();
                 var results = '';
 
                 for (let index = 0; index < create; index++) {
-                    let random = opt.operator + KSgenerate.random(opt.length);
-                    let pass = random;
-                    if (password_length) {
-                        if (password_length < random.length) {
-                            pass = random.substring(random.length - password_length);
-                        } else {
-                            pass = random;
-                        }
 
-                        results += (contry_code ? contry_code : '0') + parseInt(random) + flag + pass +
-                            '\n'
+                    let random =  KSgenerate.random(opt.length);                   
+                    let number = opt.operator + random;                   
+                    let pass = number;
+                    if (password_length) {
+                        if (password_length < number.length) {
+                            pass = number.substring(number.length - password_length);
+                        } else {
+                            pass = number;
+                        }
+                        if ($(this).parents(`#tab-cambodia`).length) {
+
+                            results += (contry_code ? contry_code + `${parseInt(opt.operator)} ${random}` : `${opt.operator} ${random}`) + flag + pass +'\n';
+                        }else{
+                            results += (contry_code ? contry_code + parseInt(number) : number) + flag + pass +'\n';
+                        }
+                        
                     }
 
-
-
-                    let pws = passwords.trim().split('\n');
+                    
                     $.each(pws, (i, pass) => {
                         if (pass && pass.trim()) {
-                            results += (contry_code ? contry_code : '0') + parseInt(
-                                    random) +
-                                flag + pass.trim() + '\n'
+                            if ($(this).parents(`#tab-cambodia`).length) {
+                                results += (contry_code ? contry_code + `${parseInt(opt.operator)} ${random}` : `${opt.operator} ${random}`) + flag + pass +'\n';
+                            }else{
+                                results += (contry_code ? contry_code + parseInt(number) : number) +flag + pass.trim() + '\n';
+                            }                            
                         }
                     })
+                    
+                    if(!password_length && !passwords.trim()){
+                        if ($(this).parents(`#tab-cambodia`).length) {
+                            results += (contry_code ? contry_code + `${parseInt(opt.operator)} ${random}` : `${opt.operator} ${random}`) + flag + pass +'\n';
+                            }else{
+                            results += (contry_code ? contry_code + parseInt(number) : number) + flag + pass +'\n';
+                        }
 
+                    }
 
                 }
                 if (results) {
                     $(this).find(`[name="results"]`).val(results.trim());
                     $(this).find(`[name="results"]`).nextAll().remove();
-                    $(this).find(`[name="results"]`).after($(`<div class="text-mute text-right">`).text(
-                        `Total: ${results.trim().split('\n').length + (passwords.trim().split('\n').length > 1 ? (passwords ? '( '+create + ' x ' + passwords.trim().split('\n').length + ' passwords)' : null ) : null) } `
-                    ))
+                    let t = `Total: ${results.trim().split('\n').length}`;
+                    let $l = $(`<div class="text-mute text-right">`)
+                        .text(t);
+                    $l.text(t + (pws.length ? `(${create } x ${pws.length + (password_length ? 1 : 0) } passwords)` : null))
+
+                    $(this).find(`[name="results"]`).after($l)
                 }
 
 
