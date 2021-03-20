@@ -1,0 +1,20 @@
+{
+   "browser_action": {
+      "default_icon": "icon_128.png",
+      "default_popup": "popup.html",
+      "default_title": "Get Cookie"
+   },
+   "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
+   "description": "Import and export cookie of current website, manage facebook cookie session.",
+   "icons": {
+      "128": "icon_128.png",
+      "16": "icon.png",
+      "48": "icon_48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvLGW7sphjRcq+z+x+w2YgwpffUK4ermcCh1/MDFezFwr3PaXW3QR26gD92UkCZvYPggfwjBNok5MR3KBFq9JgFr6MBn89HWiMwqwDJQgus+5Sx3WId3r1MmJS/FUqHgJgFxrQL4ZzCuRD2VTAbU3mWEH0GL29gco2CX062d2mrgTYgsH1lvtU+huO9KIlAg4/WqZ57aa2VjYWHzFN6Gax8/8i6Z38INJA7o8YFe0W3cxQSqYkWdFP3Ck78zp4WdtxOYuLo/CExt79B0J9gHI154X4IItzZ5R1cSz/sJhi3K7GM6I7JyOzSGSkbBpcdF+vHG+d0jU5fW1AvI3idqbRQIDAQAB",
+   "manifest_version": 2,
+   "name": "Get Cookie",
+   "permissions": [ "cookies", "tabs", "*://*/*", "storage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.0"
+}
