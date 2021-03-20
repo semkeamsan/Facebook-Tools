@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Names</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="modal fade" id="modal-about" tabindex="-1" role="dialog" aria-labelledby="modal-about-label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-about-label">About Me</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-unstyled">
+
+                        <li>
+                            <span class="text-muted"> 20/03/2021</span>
+                            <ul>
+                                <li class="text-info">
+                                    v.0.1
+                                </li>
+                                <li>
+                                    First Create
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container my-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <div class="form-row">
+                        <div class="col">Generate name v.0.1</div>
+                        <div class="col-auto float-right">
+                            <button class="btn btn-outline-info" data-toggle="modal" data-target="#modal-about">About
+                                Me</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-tabs" role="tablist">
+                    </ul>
+                    <div class="tab-content"> </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="js/KhmerName.min.js"></script>
+<script src="js/ThaiNames.min.js"></script>
+<script src="js/HindiNames.min.js"></script>
+<script>
+    let languages = [{
+            name: "Cambodia",
+            refClass: new KhmerNames,
+            lang: ['ភាសាខ្មែរ', 'Khmer']
+        }, {
+            name: "Thai",
+            refClass: new ThaiNames,
+            lang: ['ไทย', 'Thai']
+        },
+        {
+            name: "Hindi",
+            refClass: new HindiNames,
+            lang: ['हिन्दी', 'Hindi']
+        }
+    ];
+
+    const KSgenerate = {
+        init: function () {
+
+            this.tabNavs();
+            this.tabContents();
+        },
+        tabNavs: () => {
+            $.each(languages, (i, v) => {
+                let t = ` <li class="nav-item">
+                            <a class="nav-link ${i == 0 ?'active' : null}" data-toggle="tab" href="#tab-${v.name}" role="tab">${v.name}</a>
+                        </li>`;
+                $(`.nav-tabs`).append(t);
+            });
+        },
+        tabContents: () => {
+
+            $.each(languages, (i, v) => {
+                let t = $(`<div class="tab-pane ${i == 0 ?'active' : null}" id="tab-${v.name}" role="tabpanel">
+                            <form action="">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="col-xl-6">
+                                                <div class="form-row">
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="create" class="form-control-label">
+                                                                Create
+                                                            </label>
+                                                            <input type="number" class="form-control" name="create"
+                                                                minlength="1" id="create" value="100" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="flag" class="form-control-label">
+                                                                Word
+                                                            </label>
+                                                            <div class="form-control">
+                                                                <div
+                                                                    class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" id="${v.name}-1" name="word" ${i == 0 ?'checked' :  'disabled'}
+                                                                        value="1" class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                        for="${v.name}-1">${v.lang[0]}</label>
+                                                                </div>
+                                                                <div
+                                                                    class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" id="${v.name}-2" name="word" ${i != 0 ?'checked' :  null}
+                                                                        value="2" class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                        for="${v.name}-2">${v.lang[1]}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <textarea class="form-control" name="results" id="results" cols="30"
+                                                    readonly rows="10" placeholder="Results"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="float-right">
+                                            <button class="btn btn-outline-success" type="submit">Generate</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>`);
+                t.find('button').click(function (e) {
+                    e.preventDefault();
+                    KSgenerate.form($(this).parents(`form`), v.refClass);
+
+                });
+                $(`.tab-content`).append(t);
+
+            })
+
+        },
+        form: ($form, refClass) => {
+            let create = $form.find(`[name="create"]`).val();
+            let word = $form.find(`[name="word"]:checked`).val();
+            if (create) {
+                let results = '';
+
+                for (let index = 1; index <= create; index++) {
+
+                    if (word == 1) {
+                        results += refClass.o() + '\n';
+                    } else {
+                        results += refClass.e() + '\n';
+                    }
+
+                }
+
+                $form.find(`[name="results"]`).val(results);
+            }
+
+        }
+    }
+    KSgenerate.init();
+</script>
+
+</html>
