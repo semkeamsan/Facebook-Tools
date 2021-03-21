@@ -79,6 +79,9 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tab-thai" role="tab">Thai</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tab-hindi" role="tab">Hindi</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab-cambodia" role="tabpanel">
@@ -249,6 +252,89 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="tab-pane" id="tab-hindi" role="tabpanel">
+                            <form action="">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="col-xl-6">
+                                                <div class="form-row">
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="contry_code" class="form-control-label">
+                                                                Contry code
+                                                            </label>
+                                                            <input type="text" class="form-control" name="contry_code"
+                                                                id="contry_code" value="+91">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="operator" class="form-control-label">
+                                                                Operator
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <select name="operator" class="form-control"
+                                                                id="operator"></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="passwords" class="form-control-label">
+                                                                Passwords
+                                                            </label>
+                                                            <textarea class="form-control" name="passwords"
+                                                                id="passwords" cols="30" rows="5"
+                                                                placeholder='11112222&#10;22223333&#10;66667777&#10;77778888&#10;88889999'></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="password_length" class="form-control-label">
+                                                                Password from generate length
+                                                            </label>
+                                                            <input type="text" class="form-control" maxlength="2"
+                                                                name="password_length" id="password_length" value="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="create" class="form-control-label">
+                                                                Create
+                                                            </label>
+                                                            <input type="number" class="form-control" name="create"
+                                                                minlength="1" id="create" value="100" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="flag" class="form-control-label">
+                                                                Flag
+                                                            </label>
+                                                            <input type="text" class="form-control" name="flag"
+                                                                id="flag" value="|">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <textarea class="form-control" name="results" id="results" cols="30" readonly
+                                                    rows="10" placeholder="Results"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="float-right">
+                                            <button class="btn btn-outline-success" type="submit">Generate</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -258,6 +344,7 @@
 </body>
 <script src="json/cambodia_operator.js"></script>
 <script src="json/thai_operator.js"></script>
+<script src="json/hindi_operator.js"></script>
 <script>
     const KSgenerate = {
         init: function () {
@@ -275,6 +362,13 @@
                     o.append($(`<option value='${JSON.stringify(c)}'>`).text(c.operator));
                 });
                 $(`#tab-thai`).find(`[name="operator"]`).append(o);
+            });
+            $.each(hindi_operator, (a, b) => {
+                let o = $(`<optgroup label="${this.capitalizeFirstLetter(a)}">`)
+                $.map(b, (c) => {
+                    o.append($(`<option value='${JSON.stringify(c)}'>`).text(c.operator));
+                });
+                $(`#tab-hindi`).find(`[name="operator"]`).append(o);
             });
 
             this.event();
