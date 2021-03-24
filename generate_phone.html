@@ -156,8 +156,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-6">
-                                                <textarea class="form-control" name="results" id="results" cols="30" readonly
-                                                    rows="10" placeholder="Results"></textarea>
+                                                <textarea class="form-control" name="results" id="results" cols="30"
+                                                    readonly rows="10" placeholder="Results"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -239,8 +239,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-6">
-                                                <textarea class="form-control" name="results" id="results" cols="30" readonly
-                                                    rows="10" placeholder="Results"></textarea>
+                                                <textarea class="form-control" name="results" id="results" cols="30"
+                                                    readonly rows="10" placeholder="Results"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -322,8 +322,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-6">
-                                                <textarea class="form-control" name="results" id="results" cols="30" readonly
-                                                    rows="10" placeholder="Results"></textarea>
+                                                <textarea class="form-control" name="results" id="results" cols="30"
+                                                    readonly rows="10" placeholder="Results"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -410,8 +410,8 @@
 
                 for (let index = 0; index < create; index++) {
 
-                    let random =  KSgenerate.random(opt.length);                   
-                    let number = opt.operator + random;                   
+                    let random = KSgenerate.random(opt.length);
+                    let number = opt.operator + random;
                     let pass = number;
                     if (password_length) {
                         if (password_length < number.length) {
@@ -421,29 +421,38 @@
                         }
                         if ($(this).parents(`#tab-cambodia`).length) {
 
-                            results += (contry_code ? contry_code + `${parseInt(opt.operator)} ${random}` : `${opt.operator} ${random}`) + flag + pass +'\n';
-                        }else{
-                            results += (contry_code ? contry_code + parseInt(number) : number) + flag + pass +'\n';
+                            results += (contry_code ? contry_code +
+                                    `${parseInt(opt.operator)} ${random}` : `${opt.operator} ${random}`
+                                    ) + flag + pass + '\n';
+                        } else {
+                            results += (contry_code ? contry_code + parseInt(number) : number) + flag +
+                                pass + '\n';
                         }
-                        
+
                     }
 
-                    
+
                     $.each(pws, (i, pass) => {
                         if (pass && pass.trim()) {
                             if ($(this).parents(`#tab-cambodia`).length) {
-                                results += (contry_code ? contry_code + `${parseInt(opt.operator)} ${random}` : `${opt.operator} ${random}`) + flag + pass +'\n';
-                            }else{
-                                results += (contry_code ? contry_code + parseInt(number) : number) +flag + pass.trim() + '\n';
-                            }                            
+                                results += (contry_code ? contry_code +
+                                    `${parseInt(opt.operator)} ${random}` :
+                                    `${opt.operator} ${random}`) + flag + pass + '\n';
+                            } else {
+                                results += (contry_code ? contry_code + parseInt(number) :
+                                    number) + flag + pass.trim() + '\n';
+                            }
                         }
                     })
-                    
-                    if(!password_length && !passwords.trim()){
+
+                    if (!password_length && !passwords.trim()) {
                         if ($(this).parents(`#tab-cambodia`).length) {
-                            results += (contry_code ? contry_code + `${parseInt(opt.operator)} ${random}` : `${opt.operator} ${random}`) + flag + pass +'\n';
-                            }else{
-                            results += (contry_code ? contry_code + parseInt(number) : number) + flag + pass +'\n';
+                            results += (contry_code ? contry_code +
+                                    `${parseInt(opt.operator)} ${random}` : `${opt.operator} ${random}`
+                                    ) + flag + pass + '\n';
+                        } else {
+                            results += (contry_code ? contry_code + parseInt(number) : number) + flag +
+                                pass + '\n';
                         }
 
                     }
@@ -455,7 +464,9 @@
                     let t = `Total: ${results.trim().split('\n').length}`;
                     let $l = $(`<div class="text-mute text-right">`)
                         .text(t);
-                    $l.text(t + (pws.length ? `(${create } x ${pws.length + (password_length ? 1 : 0) } passwords)` : null))
+                    $l.text(t + (pws.length ?
+                        `(${create } x ${pws.length + (password_length ? 1 : 0) } passwords)` :
+                        null))
 
                     $(this).find(`[name="results"]`).after($l)
                 }
