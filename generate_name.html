@@ -25,13 +25,28 @@
                     <ul class="list-unstyled">
 
                         <li>
-                            <span class="text-muted"> 20/03/2021</span>
+                            <span class="text-muted"> 24/03/2021</span>
                             <ul>
                                 <li class="text-info">
+                                    v.0.2
+                                    <ul>
+                                        <li>
+                                            Add Thai name in Thai
+                                        </li>
+                                    </ul>
+                                </li>                               
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="text-muted"> 20/03/2021</span>
+                            <ul>                               
+                                <li class="text-info">
                                     v.0.1
-                                </li>
-                                <li>
-                                    First Create
+                                    <ul>
+                                        <li>
+                                            First Create
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
@@ -50,7 +65,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="form-row">
-                        <div class="col">Generate name v.0.1</div>
+                        <div class="col">Generate name v.0.2</div>
                         <div class="col-auto float-right">
                             <button class="btn btn-outline-info" data-toggle="modal" data-target="#modal-about">About
                                 Me</button>
@@ -97,7 +112,7 @@
         tabNavs: () => {
             $.each(languages, (i, v) => {
                 let t = ` <li class="nav-item">
-                            <a class="nav-link ${i == 0 ?'active' : null}" data-toggle="tab" href="#tab-${v.name}" role="tab">${v.name}</a>
+                            <a class="nav-link ${i == 0  ?'active' : null}" data-toggle="tab" href="#tab-${v.name}" role="tab">${v.name}</a>
                         </li>`;
                 $(`.nav-tabs`).append(t);
             });
@@ -129,14 +144,14 @@
                                                             <div class="form-control">
                                                                 <div
                                                                     class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" id="${v.name}-1" name="word" ${i == 0 ?'checked' :  'disabled'}
+                                                                    <input type="radio" id="${v.name}-1" name="word" ${i == 0 || i == 1 ?'checked' :  'disabled'}
                                                                         value="1" class="custom-control-input">
                                                                     <label class="custom-control-label"
                                                                         for="${v.name}-1">${v.lang[0]}</label>
                                                                 </div>
                                                                 <div
                                                                     class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" id="${v.name}-2" name="word" ${i != 0 ?'checked' :  null}
+                                                                    <input type="radio" id="${v.name}-2" name="word" ${i != 0 && i!=1 ?'checked' :  null}
                                                                         value="2" class="custom-control-input">
                                                                     <label class="custom-control-label"
                                                                         for="${v.name}-2">${v.lang[1]}</label>
